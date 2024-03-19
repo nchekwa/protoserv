@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+# -------------------------------------------------------------------------
+# net-ez
+# -------------------------------------------------------------------------
+  apstra-protoserv:
+    container_name: protoserv
+    hostname: protoserv
+    image: protoserv:0.2
+    volumes:
+      - ./data:/opt/protoserv/data
+      - ./log:/opt/protoserv/log
+    ports:
+      - 4444:4444
+      - 8765:8765
+
+    #command: sleep 1000

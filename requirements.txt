@@ -1,0 +1,3 @@
+# Non-standard libraries used in the project
+protobuf>3.18.0
+py3-websockets=>12.0
