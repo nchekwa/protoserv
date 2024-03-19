@@ -7,12 +7,28 @@ services:
   apstra-protoserv:
     container_name: protoserv
     hostname: protoserv
-    image: protoserv:0.2
+    #image: protoserv:0.2
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./data:/opt/protoserv/data
       - ./log:/opt/protoserv/log
     ports:
-      - 4444:4444
-      - 8765:8765
-
-    #command: sleep 1000
+      - 4444:4444   # LISTEN_PORT - can be changed
+      - 8765:8765   # WebSocket - for now it is hardcoded to 8765
+    environment:
+      APSTRA_VERSION: "4.2.1" #Specifies the Apstra version to use for the proto schema files
+      # LISTEN_PORT - Port number for the server to listen on protobuf | Default: 4444
+      # LISTEN_IPADDRESS - IP address for the server to bind to | Default: 0.0.0.0 (all interfaces)
+      # LOG_REFRESH_INTERVAL - Interval to refresh the console in seconds | Default: 5
+      # STD_LOGGER_FILE_OUTPUT_FILEPATH - File path for the standard log file | Default: log/protoserv.log
+      # STD_LOGGER_FILE_ROTATION_WHEN - When to rotate the standard log file (based on time vs size) | Default: midnight
+      # STD_LOGGER_FILE_ROTATION_INTERVAL - Interval to rotate the standard log file in days | Default: 1
+      # STD_LOGGER_FILE_ROTATION_BACKUP_COUNT - Number of rotated standard log files to retain days | Default: 10
+      # STD_LOGGER_FILE_LEVEL - Log level for the standard file logger | Default: INFO
+      # PB_LOGGER_FILE_OUTPUT_FORMAT - Format for the protobuf data file logger format (json, json4, dict) | Default: json
+      # DATA_LOGGER_FILE_OUTPUT_FILEPATH - File path for the standard data file | Default: data/protoserv.data.log
+      # DATA_LOGGER_FILE_ROTATION_WHEN - When to rotate the data log file | Deault: midnight
+      # DATA_LOGGER_FILE_ROTATION_INTERVAL - Interval to rotate the data log file in days | Default: 1
+      # DATA_LOGGER_FILE_ROTATION_BACKUP_COUNT - Number of rotated data log files to retain days | Default: 10

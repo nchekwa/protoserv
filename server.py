@@ -369,7 +369,7 @@ if __name__ == "__main__":
     # Create a logger and default level
     zlogger = ZLogger()
     zlogger.set_std_logger_file_output_filepath(os.getenv('STD_LOGGER_FILE_OUTPUT_FILEPATH', 'log/protoserv.log'))
-    zlogger.set_data_logger_file_output_filepath(os.getenv('STD_LOGGER_FILE_OUTPUT_FILEPATH', 'data/protoserv.data.log'))
+    zlogger.set_data_logger_file_output_filepath(os.getenv('DATA_LOGGER_FILE_OUTPUT_FILEPATH', 'data/protoserv.data.log'))
     logger = zlogger.std_logger()
     pb_logger = zlogger.data_logger()
 
@@ -380,26 +380,3 @@ if __name__ == "__main__":
         signal_handler(signal.SIGINT, None)
 
     main()
-
-
-
-# ----------
-# APSTRA_VERSION
-# LISTEN_PORT
-# LISTEN_IPADDRESS
-
-# LOGGER_LEVEL
-
-# LOGGER_FILE_PATH
-# LOGGER_FILE_LEVEL
-# LOGGER_FILE_ROTATION_INTERVAL
-# LOGGER_FILE_ROTATION_BACKUP_COUNT
-# LOGGER_FILE_ROTATION_WHEN
-
-# PB_FILE_OUTPUT_PATH
-# PB_LOGGER_FILE_ROTATION_INTERVAL
-# PB_LOGGER_FILE_ROTATION_WHEN
-# PB_LOGGER_FILE_ROTATION_BACKUP_COUNT
-# PB_LOGGER_FILE_OUTPUT_FORMAT
-
-# If backupCount is > 0, when rollover is done, no more than backupCount files are kept - the oldest ones are deleted.
